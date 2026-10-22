@@ -10,6 +10,8 @@ import {
   Monitor,
   QrCode,
   Sparkles,
+  Share2,
+  Check,
   type LucideIcon,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -38,6 +40,28 @@ export default function DesktopSidebar({ activeTab }: DesktopSidebarProps) {
   const { syncStatus, isSyncing } = useSync();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSyncModalOpen, setIsSyncModalOpen] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
+
+  const handleShareApp = async () => {
+    const shareData = {
+      title: "Tuck — Your Personal Space",
+      text: "A calm, private personal vault for identity cards, daily routine checklists, monthly budgets, and curated links. 100% offline-first & free!",
+      url: "https://tuck-vault.vercel.app",
+    };
+
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch {}
+    }
+
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      await navigator.clipboard.writeText("https://tuck-vault.vercel.app");
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2500);
+    }
+  };
 
   const counts = useLiveQuery(async () => {
     try {
@@ -146,6 +170,23 @@ export default function DesktopSidebar({ activeTab }: DesktopSidebarProps) {
             <span className="flex-1">{label}</span>
           </button>
         ))}
+
+        {/* Viral Share App Button */}
+        <button
+          type="button"
+          onClick={handleShareApp}
+          className="w-full group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-indigo-700 bg-indigo-50/70 hover:bg-indigo-100 transition-colors text-left"
+        >
+          {shareCopied ? (
+            <Check className="h-[18px] w-[18px] text-emerald-600 stroke-[2.5]" />
+          ) : (
+            <Share2 className="h-[18px] w-[18px] stroke-[2]" />
+          )}
+          <span className="flex-1 font-semibold">{shareCopied ? "Link Copied!" : "Spread the Word"}</span>
+          <span className="text-[10px] bg-indigo-200/70 text-indigo-800 px-1.5 py-0.5 rounded-full font-bold">
+            Share
+          </span>
+        </button>
       </nav>
 
       {/* Bottom user section */}

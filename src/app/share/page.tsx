@@ -184,6 +184,25 @@ function ShareReceiverContent() {
             <ArrowLeft className="w-4 h-4" /> Go to Tuck
           </Link>
         </div>
+
+        {/* Viral Growth Banner */}
+        <div className="rounded-2xl bg-gradient-to-r from-indigo-50/80 to-purple-50/80 border border-indigo-100 p-4 text-center space-y-2">
+          <div className="flex items-center justify-center gap-1.5 text-indigo-700 font-bold text-xs">
+            <span>✨</span>
+            <span>Tuck — Your Personal Space</span>
+          </div>
+          <p className="text-[11px] text-slate-600 leading-relaxed max-w-sm mx-auto">
+            Store your own Aadhaar, PAN, daily routines, and budgets in a private, 100% offline-ready vault. Free forever.
+          </p>
+          <div className="pt-1">
+            <Link
+              href="/login"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 shadow-sm shadow-indigo-100 transition"
+            >
+              Get Your Free Space &rarr;
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
