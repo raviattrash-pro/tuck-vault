@@ -4,6 +4,16 @@ import path from 'path';
 import { getSupabaseServerClient, isSupabaseConfigured } from '@/lib/supabase';
 
 const DATA_DIR = path.join(process.cwd(), 'data', 'sync_users');
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_KEY_LENGTH = 254;
+const MAX_COLLECTION_ITEMS = 5000;
+
+function isValidUserKey(key: unknown): key is string {
+  if (typeof key !== 'string') return false;
+  const trimmed = key.trim();
+  if (trimmed.length === 0 || trimmed.length > MAX_KEY_LENGTH) return false;
+  return EMAIL_REGEX.test(trimmed) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/.test(trimmed);
+}
 
 // Ensure fallback directory exists
 async function ensureDir() {
@@ -58,7 +68,7 @@ function mergeCollections(serverList: SyncRecord[] = [], clientList: SyncRecord[
     }
   }
 
-  return Array.from(map.values());
+  return Array.from(map.values()).slice(0, MAX_COLLECTION_ITEMS);
 }
 
 export async function GET(req: NextRequest) {
@@ -66,8 +76,8 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const userKey = searchParams.get('userKey');
 
-    if (!userKey) {
-      return NextResponse.json({ error: 'Missing userKey' }, { status: 400 });
+    if (!userKey || !isValidUserKey(userKey)) {
+      return NextResponse.json({ error: 'Invalid or missing userKey' }, { status: 400 });
     }
 
     const normalizedEmail = userKey.toLowerCase().trim();
@@ -135,8 +145,12 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { userKey, data } = body;
 
-    if (!userKey) {
-      return NextResponse.json({ error: 'Missing userKey' }, { status: 400 });
+    if (!userKey || !isValidUserKey(userKey)) {
+      return NextResponse.json({ error: 'Invalid or missing userKey' }, { status: 400 });
+    }
+
+    if (data && typeof data !== 'object') {
+      return NextResponse.json({ error: 'Invalid data payload format' }, { status: 400 });
     }
 
     const normalizedEmail = userKey.toLowerCase().trim();
