@@ -15,6 +15,13 @@ import {
   AlertCircle,
   Building2,
   Sparkles,
+  FileText,
+  CheckSquare,
+  Wallet,
+  Link2,
+  Shield,
+  Smartphone,
+  Zap,
 } from 'lucide-react';
 
 declare global {
@@ -277,24 +284,102 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#FAF8F5] px-4 py-12 selection:bg-indigo-100">
-      <div className="w-full max-w-md animate-scale-in space-y-6">
-        {/* Brand Header */}
-        <div className="text-center space-y-2">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-200">
-            <span className="text-2xl font-bold">☵</span>
-          </div>
-          <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">tuck</h1>
-            <p className="mt-1 text-xs text-slate-500 font-medium">
-              A place for the things that make up your life
-            </p>
-          </div>
-        </div>
+    <main className="min-h-screen bg-[#FAF8F5] flex items-center justify-center px-4 py-8 sm:py-12 lg:py-16 selection:bg-indigo-100">
+      <div className="w-full max-w-5xl mx-auto space-y-8">
+        
+        {/* Main Grid: Value Proposition (Left) + Login Form (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Column: What Tuck is & The Problems It Solves */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Brand Logo & Pill */}
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-200">
+                <span className="text-xl font-bold">☵</span>
+              </div>
+              <div>
+                <span className="text-2xl font-black tracking-tight text-slate-900">tuck</span>
+                <span className="ml-2.5 text-[11px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-full">
+                  Personal Vault &amp; Notes
+                </span>
+              </div>
+            </div>
 
-        {/* STEP 1: Main Login Card */}
-        {step === 'signin' && (
-          <div className="rounded-3xl bg-white p-7 sm:p-8 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-6">
+            {/* Core Value Proposition & Problem Solved */}
+            <div className="space-y-2.5">
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.2]">
+                Stop digging through chats &amp; gallery screenshots for your vital life assets.
+              </h1>
+              <p className="text-sm text-slate-600 leading-relaxed max-w-xl">
+                Tuck replaces scattered WhatsApp messages, messy photo folders, and forgotten bookmarks with a single, private space for your documents, daily routines, links, and monthly spending.
+              </p>
+            </div>
+
+            {/* The 4 Core Problems Tuck Solves (Cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              {/* Feature 1: ID Vault */}
+              <div className="bg-white/90 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-xs hover:border-indigo-300 transition">
+                <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
+                  <Shield className="w-4 h-4 text-indigo-600 shrink-0" />
+                  <span>Document Vault</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-normal">
+                  Aadhaar, PAN, DL &amp; Passport safely stored with masked numbers and instant 1-click dual-side photo downloads.
+                </p>
+              </div>
+
+              {/* Feature 2: Tasks & Checklists */}
+              <div className="bg-white/90 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-xs hover:border-indigo-300 transition">
+                <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
+                  <CheckSquare className="w-4 h-4 text-indigo-600 shrink-0" />
+                  <span>Routine Checklists</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-normal">
+                  Daily focus routines broken down into checkable tasks with priority badges and live progress tracking.
+                </p>
+              </div>
+
+              {/* Feature 3: Budgets & Lists */}
+              <div className="bg-white/90 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-xs hover:border-indigo-300 transition">
+                <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
+                  <Wallet className="w-4 h-4 text-indigo-600 shrink-0" />
+                  <span>Budgets &amp; Lists</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-normal">
+                  Track monthly spending targets, grocery lists, and investment goals without clunky Excel spreadsheets.
+                </p>
+              </div>
+
+              {/* Feature 4: Curated Links */}
+              <div className="bg-white/90 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-xs hover:border-indigo-300 transition">
+                <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
+                  <Link2 className="w-4 h-4 text-indigo-600 shrink-0" />
+                  <span>Curated Web Links</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-normal">
+                  Save reading articles, recipes, and work references neatly organized by domain and category.
+                </p>
+              </div>
+            </div>
+
+            {/* Privacy & Sync Guarantee */}
+            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs">
+              <div className="flex items-center gap-1.5 text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-3 py-1 rounded-full text-[11px] font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>100% Private &middot; Stored securely under your account</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-slate-600 text-[11px] font-medium">
+                <Smartphone className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                <span>Syncs live to phone, tablet &amp; laptop</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Focused Login Card */}
+          <div className="lg:col-span-5 w-full max-w-md mx-auto space-y-4">
+            {/* STEP 1: Main Login Card */}
+            {step === 'signin' && (
+              <div className="rounded-3xl bg-white p-7 sm:p-8 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-6">
             {/* Segmented Tab Switcher: Google Account vs Admin */}
             <div className="flex bg-slate-100 p-1 rounded-2xl text-xs font-semibold">
               <button
@@ -570,9 +655,12 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* Footer info */}
+          </div>
+        </div>
+
+        {/* Global Footer info */}
         <p className="text-center text-xs text-slate-400">
-          Clean, private space &middot; Zero unwanted mock data
+          Clean, private space &middot; Zero unwanted mock data &middot; 100% encrypted &amp; cloud synced
         </p>
       </div>
 
