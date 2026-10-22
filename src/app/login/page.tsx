@@ -298,11 +298,11 @@ export default function LoginPage() {
             <div>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl font-black tracking-tight text-slate-900">tuck</span>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-900 bg-indigo-100 border border-indigo-200 px-2.5 py-0.5 rounded-full">
                   Personal Vault &amp; Notes
                 </span>
               </div>
-              <p className="text-xs text-slate-500 mt-1 font-medium">
+              <p className="text-xs text-slate-700 mt-1 font-medium">
                 A place for the things that make up your life
               </p>
             </div>
@@ -321,8 +321,8 @@ export default function LoginPage() {
                   }}
                   className={`flex-1 py-2.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 ${
                     activeTab === 'google'
-                      ? 'bg-white text-indigo-700 shadow-sm font-bold'
-                      : 'text-slate-500 hover:text-slate-700'
+                      ? 'bg-white text-indigo-800 shadow-sm font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24">
@@ -354,8 +354,8 @@ export default function LoginPage() {
                   }}
                   className={`flex-1 py-2.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 ${
                     activeTab === 'admin'
-                      ? 'bg-white text-indigo-700 shadow-sm font-bold'
-                      : 'text-slate-500 hover:text-slate-700'
+                      ? 'bg-white text-indigo-800 shadow-sm font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <KeyRound className="w-3.5 h-3.5 text-indigo-600" />
@@ -368,7 +368,7 @@ export default function LoginPage() {
                 <div className="space-y-5 animate-fade-in">
                   <div className="text-center space-y-1">
                     <h2 className="text-base font-bold text-slate-900">Sign in to your space</h2>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-600">
                       All users authenticate securely using Google OAuth 2.0
                     </p>
                   </div>
@@ -385,7 +385,7 @@ export default function LoginPage() {
                         type="button"
                         onClick={handleGoogleClick}
                         disabled={isLoading}
-                        className="w-full max-w-[320px] py-3.5 px-4 bg-white hover:bg-slate-50 active:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-full flex items-center justify-center gap-3 text-sm font-semibold text-slate-700 shadow-sm hover:shadow transition duration-150 active:scale-[0.99]"
+                        className="w-full max-w-[320px] py-3.5 px-4 bg-white hover:bg-slate-50 active:bg-slate-100 border border-slate-300 rounded-full flex items-center justify-center gap-3 text-sm font-semibold text-slate-800 shadow-sm hover:shadow transition duration-150 active:scale-[0.99]"
                       >
                         <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24">
                           <path
@@ -414,7 +414,7 @@ export default function LoginPage() {
                       <button
                         type="button"
                         onClick={handleDirectGoogleLogin}
-                        className="text-[11px] text-indigo-600 hover:text-indigo-800 font-semibold underline underline-offset-4 transition"
+                        className="text-[11px] text-indigo-700 hover:text-indigo-900 font-semibold underline underline-offset-4 transition"
                       >
                         Popup blocked? Click here to sign in with Google directly &rarr;
                       </button>
@@ -422,12 +422,12 @@ export default function LoginPage() {
                   </div>
 
                   {/* Corporate compliance notes */}
-                  <div className="rounded-2xl bg-slate-50 border border-slate-100 p-3.5 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                  <div className="rounded-2xl bg-slate-50 border border-slate-200 p-3.5 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-800">
                       <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span>Industry Security &amp; Privacy</span>
                     </div>
-                    <ul className="text-[11px] text-slate-500 space-y-1 list-disc list-inside">
+                    <ul className="text-xs text-slate-600 space-y-1 list-disc list-inside">
                       <li>Zero server database &middot; Your data never leaves your device</li>
                       <li>End-to-end local encryption for IDs &amp; cards</li>
                       <li>Offline-first &middot; Works without internet connection</li>
@@ -441,7 +441,7 @@ export default function LoginPage() {
                 <form onSubmit={handleAdminSubmit} className="space-y-4 animate-fade-in">
                   <div className="text-center space-y-1">
                     <h2 className="text-base font-bold text-slate-900">Administrator Console</h2>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-600">
                       Sign in with administrator credentials
                     </p>
                   </div>
@@ -491,7 +491,8 @@ export default function LoginPage() {
                       <button
                         type="button"
                         onClick={() => setShowAdminPassword(!showAdminPassword)}
-                        className="absolute right-3.5 top-2.5 text-slate-400 hover:text-slate-600 p-0.5"
+                        aria-label={showAdminPassword ? "Hide password" : "Show password"}
+                        className="absolute right-3.5 top-2.5 text-slate-500 hover:text-slate-700 p-0.5"
                       >
                         {showAdminPassword ? (
                           <EyeOff className="w-4 h-4" />
@@ -515,8 +516,8 @@ export default function LoginPage() {
               )}
 
               {/* Bottom Security Footer */}
-              <div className="pt-2 flex items-center justify-center gap-2 text-[11px] text-slate-400">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+              <div className="pt-2 flex items-center justify-center gap-2 text-xs text-slate-600 font-medium">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Corporate Standard &middot; OAuth 2.0 &amp; AES Local Vault</span>
               </div>
             </div>
@@ -541,7 +542,7 @@ export default function LoginPage() {
 
                 <div>
                   <h2 className="text-base font-bold text-slate-900">Welcome to Tuck!</h2>
-                  <p className="text-xs text-slate-500 font-mono">{pendingUser.email}</p>
+                  <p className="text-xs text-slate-600 font-mono">{pendingUser.email}</p>
                 </div>
               </div>
 
@@ -559,7 +560,7 @@ export default function LoginPage() {
                     autoFocus
                     className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition"
                   />
-                  <p className="text-[11px] text-slate-400 mt-1">
+                  <p className="text-xs text-slate-500 mt-1">
                     Shown on your personal space dashboard (e.g. &ldquo;Good morning, {customName || '...'}&rdquo;)
                   </p>
                 </div>
@@ -577,7 +578,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setStep('signin')}
-                    className="w-full py-2.5 text-xs text-slate-500 hover:text-slate-700 font-semibold transition"
+                    className="w-full py-2.5 text-xs text-slate-600 hover:text-slate-800 font-semibold transition"
                   >
                     Use a different account
                   </button>
@@ -590,10 +591,10 @@ export default function LoginPage() {
         {/* DIVIDER: Elegant transition between Login and Details */}
         <div className="relative max-w-xl mx-auto pt-4">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-slate-200" />
+            <div className="w-full border-t border-slate-300" />
           </div>
           <div className="relative flex justify-center text-xs">
-            <span className="bg-[#FAF8F5] px-4 font-bold text-slate-400 uppercase tracking-widest text-[10px]">
+            <span className="bg-[#FAF8F5] px-4 font-bold text-slate-700 uppercase tracking-widest text-[11px]">
               Why Tuck?
             </span>
           </div>
@@ -606,7 +607,7 @@ export default function LoginPage() {
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-[1.25]">
               Stop digging through chats &amp; gallery screenshots for your vital life assets.
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-xl mx-auto">
               Tuck replaces scattered WhatsApp messages, messy photo folders, and forgotten bookmarks with a single, private space for your documents, daily routines, links, and monthly spending.
             </p>
           </div>
@@ -615,44 +616,44 @@ export default function LoginPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-left pt-1">
             {/* Feature 1: ID Vault */}
             <div className="bg-white/95 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-sm hover:border-indigo-300 hover:shadow-md transition">
-              <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
-                <Shield className="w-4 h-4 text-indigo-600 shrink-0" />
+              <div className="flex items-center gap-2 text-indigo-700 font-bold text-xs">
+                <Shield className="w-4 h-4 text-indigo-700 shrink-0" />
                 <span>Document Vault</span>
               </div>
-              <p className="text-[11px] text-slate-500 leading-normal">
+              <p className="text-xs text-slate-600 leading-normal">
                 Aadhaar, PAN, DL &amp; Passport safely stored with masked numbers and instant 1-click dual-side photo downloads.
               </p>
             </div>
 
             {/* Feature 2: Tasks & Checklists */}
             <div className="bg-white/95 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-sm hover:border-indigo-300 hover:shadow-md transition">
-              <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
-                <CheckSquare className="w-4 h-4 text-indigo-600 shrink-0" />
+              <div className="flex items-center gap-2 text-indigo-700 font-bold text-xs">
+                <CheckSquare className="w-4 h-4 text-indigo-700 shrink-0" />
                 <span>Routine Checklists</span>
               </div>
-              <p className="text-[11px] text-slate-500 leading-normal">
+              <p className="text-xs text-slate-600 leading-normal">
                 Daily focus routines broken down into checkable tasks with priority badges and live progress tracking.
               </p>
             </div>
 
             {/* Feature 3: Budgets & Lists */}
             <div className="bg-white/95 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-sm hover:border-indigo-300 hover:shadow-md transition">
-              <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
-                <Wallet className="w-4 h-4 text-indigo-600 shrink-0" />
+              <div className="flex items-center gap-2 text-indigo-700 font-bold text-xs">
+                <Wallet className="w-4 h-4 text-indigo-700 shrink-0" />
                 <span>Budgets &amp; Lists</span>
               </div>
-              <p className="text-[11px] text-slate-500 leading-normal">
+              <p className="text-xs text-slate-600 leading-normal">
                 Track monthly spending targets, grocery lists, and investment goals without clunky Excel spreadsheets.
               </p>
             </div>
 
             {/* Feature 4: Curated Links */}
             <div className="bg-white/95 backdrop-blur-sm border border-slate-200/80 rounded-2xl p-4 space-y-1.5 shadow-sm hover:border-indigo-300 hover:shadow-md transition">
-              <div className="flex items-center gap-2 text-indigo-600 font-bold text-xs">
-                <Link2 className="w-4 h-4 text-indigo-600 shrink-0" />
+              <div className="flex items-center gap-2 text-indigo-700 font-bold text-xs">
+                <Link2 className="w-4 h-4 text-indigo-700 shrink-0" />
                 <span>Curated Web Links</span>
               </div>
-              <p className="text-[11px] text-slate-500 leading-normal">
+              <p className="text-xs text-slate-600 leading-normal">
                 Save reading articles, recipes, and work references neatly organized by domain and category.
               </p>
             </div>
@@ -660,19 +661,19 @@ export default function LoginPage() {
 
           {/* Privacy & Sync Guarantee */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs">
-            <div className="flex items-center gap-1.5 text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-3 py-1 rounded-full text-[11px] font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <div className="flex items-center gap-1.5 text-emerald-900 bg-emerald-100 border border-emerald-300 px-3 py-1 rounded-full text-xs font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
               <span>100% Private &middot; Stored securely under your account</span>
             </div>
-            <div className="flex items-center gap-1.5 text-slate-600 text-[11px] font-medium">
-              <Smartphone className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+            <div className="flex items-center gap-1.5 text-slate-700 text-xs font-semibold">
+              <Smartphone className="w-3.5 h-3.5 text-indigo-700 shrink-0" />
               <span>Syncs live to phone, tablet &amp; laptop</span>
             </div>
           </div>
         </div>
 
         {/* Global Footer info */}
-        <p className="text-center text-xs text-slate-400 pt-2 pb-6">
+        <p className="text-center text-xs text-slate-600 pt-2 pb-6 font-medium">
           Clean, private space &middot; Zero unwanted mock data &middot; 100% encrypted &amp; cloud synced
         </p>
       </div>
@@ -702,12 +703,12 @@ export default function LoginPage() {
                 />
               </svg>
               <h3 className="font-bold text-slate-900 text-sm">Sign in with Google</h3>
-              <p className="text-xs text-slate-500">Choose an account to continue to Tuck</p>
+              <p className="text-xs text-slate-600">Choose an account to continue to Tuck</p>
             </div>
 
             {/* Quick Account Selection */}
             <div className="space-y-2">
-              <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Enter your Google Account
               </label>
 
@@ -717,14 +718,14 @@ export default function LoginPage() {
                   placeholder="yourname@gmail.com"
                   value={googleInputEmail}
                   onChange={(e) => setGoogleInputEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-2xl border border-slate-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
                 <input
                   type="text"
                   placeholder="Your Name (e.g. John Doe)"
                   value={googleInputName}
                   onChange={(e) => setGoogleInputName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-2xl border border-slate-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
@@ -749,7 +750,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <p className="text-[10px] text-slate-400 text-center leading-relaxed">
+            <p className="text-xs text-slate-600 text-center leading-relaxed">
               To continue, Google will share your name, email address, and profile picture with Tuck.
             </p>
           </div>

@@ -36,16 +36,16 @@ export default function RootPage() {
 
         <div className="flex items-center justify-center gap-3 pt-2">
           <div className="w-5 h-5 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs text-slate-400 font-medium">Entering your personal space...</span>
+          <span className="text-xs text-slate-600 font-medium">Entering your personal space...</span>
         </div>
 
         {/* Search Engine Crawlable Fallback & NoScript Navigation */}
         <noscript>
           <div className="pt-6 space-y-3">
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-700">
               JavaScript is required for local offline encryption.
             </p>
-            <div className="flex justify-center gap-4 text-xs font-semibold text-indigo-600">
+            <div className="flex justify-center gap-4 text-xs font-semibold text-indigo-800">
               <Link href="/login" className="underline">Go to Login &amp; Vault</Link>
               <Link href="/share" className="underline">Public Share Portal</Link>
             </div>
