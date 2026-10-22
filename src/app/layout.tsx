@@ -73,6 +73,9 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Tuck",
   },
+  verification: {
+    google: "00f9059f5265dae5",
+  },
 };
 
 export const viewport: Viewport = {
