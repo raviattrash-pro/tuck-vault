@@ -44,8 +44,8 @@
 
     <!-- Tagline & Description -->
     <text x="0" y="115" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Your personal space for what matters most.</text>
-    <text x="0" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" fill="#C7D2FE">Identity cards &middot; Daily checklists &middot; Budgets &middot; Saved links</text>
-    <text x="0" y="180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500" fill="#93C5FD">100% Offline-First PWA &middot; Supabase Cloud Sync &middot; Zero Unwanted Data</text>
+    <text x="0" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" fill="#C7D2FE">Identity cards &#183; Daily checklists &#183; Budgets &#183; Saved links</text>
+    <text x="0" y="180" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500" fill="#93C5FD">100% Offline-First PWA &#183; Supabase Cloud Sync &#183; Zero Unwanted Data</text>
 
     <!-- Badges -->
     <g transform="translate(0, 215)">
@@ -68,7 +68,7 @@
     <text x="35" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800" fill="#C7D2FE" letter-spacing="1">PERSONAL IDENTITY</text>
     
     <text x="25" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#FFFFFF">Aadhaar Card</text>
-    <text x="25" y="112" font-family="monospace" font-size="18" font-weight="700" fill="#A5B4FC" letter-spacing="2">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4821</text>
+    <text x="25" y="112" font-family="monospace" font-size="18" font-weight="700" fill="#A5B4FC" letter-spacing="2">&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; 4821</text>
     
     <rect x="25" y="145" width="140" height="32" rx="10" fill="#4338CA" />
     <text x="95" y="165" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Reveal with PIN</text>

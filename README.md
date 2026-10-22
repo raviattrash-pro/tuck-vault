@@ -2,7 +2,9 @@
 
 <div align="center">
 
-![Tuck App Banner](./public/tuck-banner.svg)
+<img src="https://raw.githubusercontent.com/raviattrash-pro/tuck-vault/main/public/tuck-banner.png" alt="Tuck App Banner" width="100%" />
+
+<br/><br/>
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-tuck--vault.vercel.app-4338CA?style=for-the-badge&logo=vercel)](https://tuck-vault.vercel.app)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/raviattrash-pro/tuck-vault)
