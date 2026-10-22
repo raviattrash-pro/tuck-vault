@@ -13,13 +13,22 @@
 [![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
 [![Security](https://img.shields.io/badge/Security-AES--256%20%7C%20RLS-10B981?style=for-the-badge&logo=shield)](https://github.com/raviattrash-pro/tuck-vault)
 [![PWA](https://img.shields.io/badge/PWA-Offline%20Ready-F59E0B?style=for-the-badge&logo=pwa)](https://github.com/raviattrash-pro/tuck-vault)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+<br/>
+
+[![GitHub Stars](https://img.shields.io/github/stars/raviattrash-pro/tuck-vault?style=social)](https://github.com/raviattrash-pro/tuck-vault/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/raviattrash-pro/tuck-vault?style=social)](https://github.com/raviattrash-pro/tuck-vault/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/raviattrash-pro/tuck-vault?style=social)](https://github.com/raviattrash-pro/tuck-vault/watchers)
 
 <p align="center">
   <b>A private, calm, and unified personal vault for identity cards, daily routine checklists, monthly budgets, and curated links.</b><br>
   Built with offline-first Dexie IndexedDB, real-time Supabase cloud synchronization, Google OAuth 2.0, and zero unwanted mock data.
 </p>
 
-[Explore Features](#-features) • [Problem & Solution](#-the-problem--the-solution) • [Security Standard](#-industry-security-standards) • [Architecture](#-system-architecture) • [Getting Started](#-getting-started)
+> ⭐ **Enjoying Tuck?** Give the repository a star to support active development and help more developers discover privacy-first tools!
+
+[Explore Features](#-features) • [Problem & Solution](#-the-problem--the-solution) • [Security Standard](#-industry-security-standards) • [Architecture](#-system-architecture) • [Getting Started](#-getting-started) • [Contributing](#-contributing)
 
 </div>
 
@@ -219,6 +228,14 @@ Tuck is built for zero-config deployment on Vercel:
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY`
 5. Click **Deploy**. Your app will be live with full SSL, global CDN edge caching, and automated builds!
+
+---
+
+## 🤝 Contributing
+
+Contributions, feature ideas, and pull requests are warmly welcomed! Please see our [Contributing Guide](CONTRIBUTING.md) to get started.
+
+If you like what we are building, please consider starring ⭐ the repository and spreading the word!
 
 ---
 

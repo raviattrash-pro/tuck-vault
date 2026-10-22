@@ -22,6 +22,7 @@ import {
   Shield,
   Smartphone,
   Zap,
+  Star,
 } from 'lucide-react';
 
 declare global {
@@ -672,10 +673,25 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Global Footer info */}
-        <p className="text-center text-xs text-slate-600 pt-2 pb-6 font-medium">
-          Clean, private space &middot; Zero unwanted mock data &middot; 100% encrypted &amp; cloud synced
-        </p>
+        {/* Global Footer info & Open Source Star */}
+        <div className="text-center pt-2 pb-6 space-y-1.5">
+          <p className="text-xs text-slate-600 font-medium">
+            Clean, private space &middot; Zero unwanted mock data &middot; 100% encrypted &amp; cloud synced
+          </p>
+          <div className="flex items-center justify-center gap-2 text-xs">
+            <span className="text-slate-500">Free &amp; Open Source</span>
+            <span className="text-slate-300">&middot;</span>
+            <a
+              href="https://github.com/raviattrash-pro/tuck-vault"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-amber-700 hover:text-amber-800 transition bg-amber-50/80 hover:bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-200/60"
+            >
+              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+              <span>Star on GitHub</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Google Account Selector Dialog (Standard OAuth Modal) */}

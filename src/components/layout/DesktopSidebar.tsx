@@ -12,6 +12,7 @@ import {
   Sparkles,
   Share2,
   Check,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -187,6 +188,20 @@ export default function DesktopSidebar({ activeTab }: DesktopSidebarProps) {
             Share
           </span>
         </button>
+
+        {/* GitHub Star Link */}
+        <a
+          href="https://github.com/raviattrash-pro/tuck-vault"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full group flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-semibold text-amber-800 bg-amber-50/80 hover:bg-amber-100/90 border border-amber-200/70 transition-colors text-left"
+        >
+          <Star className="h-4 w-4 text-amber-500 fill-amber-400 stroke-[2] shrink-0" />
+          <span className="flex-1">Star on GitHub</span>
+          <span className="text-[10px] bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded-full font-bold">
+            ★ v1.0
+          </span>
+        </a>
       </nav>
 
       {/* Bottom user section */}

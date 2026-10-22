@@ -35,6 +35,7 @@ import {
   Calendar,
   Globe,
   Check,
+  Star,
 } from 'lucide-react';
 import { getGreeting, formatDateLong } from '@/lib/utils';
 import type { Note, NoteChecklistItem } from '@/types';
@@ -840,8 +841,20 @@ export default function HomePage() {
         </div>
 
         {/* Footer info line */}
-        <div className="flex items-center justify-between text-xs text-slate-400 pt-6 border-t border-slate-200/50">
-          <span>A place for the things that make up your life.</span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 pt-6 border-t border-slate-200/50">
+          <div className="flex items-center gap-2">
+            <span>A place for the things that make up your life.</span>
+            <span>&middot;</span>
+            <a
+              href="https://github.com/raviattrash-pro/tuck-vault"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-amber-700 hover:text-amber-800 font-semibold transition"
+            >
+              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+              <span>Star on GitHub</span>
+            </a>
+          </div>
           <span>Zero cloud leak &middot; 100% offline private</span>
         </div>
       </div>

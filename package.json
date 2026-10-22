@@ -1,6 +1,28 @@
 {
-  "name": "tuck",
-  "version": "0.1.0",
+  "name": "tuck-vault",
+  "version": "1.0.0",
+  "description": "A private, calm, and unified personal vault for identity cards, daily routine checklists, monthly budgets, and curated links.",
+  "author": "Ravi Attrash",
+  "license": "MIT",
+  "homepage": "https://tuck-vault.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raviattrash-pro/tuck-vault.git"
+  },
+  "keywords": [
+    "personal-vault",
+    "identity-vault",
+    "offline-first",
+    "pwa",
+    "nextjs",
+    "react",
+    "typescript",
+    "supabase",
+    "indexeddb",
+    "dexie",
+    "tailwindcss",
+    "privacy-first"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

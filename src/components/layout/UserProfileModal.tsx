@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { clearAllData } from '@/lib/db';
-import { X, User, LogOut, Trash2, Check, Shield } from 'lucide-react';
+import { X, User, LogOut, Trash2, Check, Shield, Star, ExternalLink } from 'lucide-react';
 
 interface UserProfileModalProps {
   isOpen: boolean;
@@ -105,6 +105,19 @@ export function UserProfileModal({ isOpen, onClose }: UserProfileModalProps) {
 
         {/* Actions */}
         <div className="pt-2 border-t border-slate-100 space-y-2">
+          <a
+            href="https://github.com/raviattrash-pro/tuck-vault"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-2.5 px-3 bg-amber-50 hover:bg-amber-100/90 text-amber-900 border border-amber-200/80 font-semibold rounded-2xl text-xs flex items-center justify-between transition group"
+          >
+            <div className="flex items-center gap-2">
+              <Star className="w-4 h-4 text-amber-500 fill-amber-400 shrink-0" />
+              <span>Star tuck-vault on GitHub</span>
+            </div>
+            <ExternalLink className="w-3.5 h-3.5 text-amber-600 group-hover:translate-x-0.5 transition" />
+          </a>
+
           <button
             type="button"
             onClick={handleClearAll}
