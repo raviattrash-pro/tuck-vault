@@ -23,6 +23,7 @@ import {
   Smartphone,
   Zap,
   Star,
+  Github,
 } from 'lucide-react';
 
 declare global {
@@ -285,14 +286,51 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-start px-4 py-8 sm:py-12 selection:bg-indigo-100">
-      <div className="w-full max-w-2xl mx-auto space-y-10 sm:space-y-12">
+    <main className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-start px-4 py-6 sm:py-10 selection:bg-indigo-100 relative">
+      {/* Floating Top-Right Star Pill (Always reachable without scrolling) */}
+      <div className="fixed top-3.5 right-3.5 sm:top-5 sm:right-6 z-40">
+        <a
+          href="https://github.com/raviattrash-pro/tuck-vault"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-slate-800 shadow-md shadow-slate-900/5 border border-slate-200 hover:border-amber-400 hover:shadow-lg hover:shadow-amber-100 hover:bg-amber-50/40 transition-all duration-200"
+          title="Star tuck-vault on GitHub"
+        >
+          <Github className="w-4 h-4 text-slate-700 group-hover:text-black transition-colors shrink-0" />
+          <span className="hidden sm:inline">Star on GitHub</span>
+          <span className="flex items-center gap-1 bg-amber-50 text-amber-900 px-2 py-0.5 rounded-full text-[11px] font-bold border border-amber-200/80">
+            <Star className="w-3 h-3 fill-amber-400 text-amber-500" />
+            <span>Star</span>
+          </span>
+        </a>
+      </div>
+
+      <div className="w-full max-w-2xl mx-auto space-y-8 sm:space-y-10">
         
         {/* TOP SECTION: Brand Header + Login Card */}
-        <div className="w-full max-w-md mx-auto space-y-6">
+        <div className="w-full max-w-md mx-auto space-y-5">
           
+          {/* Top Announcement Pill */}
+          <div className="flex justify-center">
+            <a
+              href="https://github.com/raviattrash-pro/tuck-vault"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-3.5 py-1.5 text-xs font-semibold text-slate-800 shadow-sm border border-slate-200/90 hover:border-amber-400 hover:bg-amber-50/60 hover:shadow-md transition-all duration-200"
+            >
+              <Github className="w-3.5 h-3.5 text-slate-700 group-hover:text-black shrink-0" />
+              <span>Free &amp; Open Source</span>
+              <span className="text-slate-300">&middot;</span>
+              <span className="flex items-center gap-1 text-amber-700 group-hover:text-amber-800 font-bold">
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                Star on GitHub
+              </span>
+              <span className="text-slate-400 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+            </a>
+          </div>
+
           {/* Brand Logo & Heading */}
-          <div className="flex flex-col items-center gap-2.5 text-center">
+          <div className="flex flex-col items-center gap-2 text-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-200">
               <span className="text-2xl font-bold">☵</span>
             </div>
@@ -673,24 +711,11 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Global Footer info & Open Source Star */}
-        <div className="text-center pt-2 pb-6 space-y-1.5">
-          <p className="text-xs text-slate-600 font-medium">
+        {/* Global Footer info */}
+        <div className="text-center pt-2 pb-6">
+          <p className="text-xs text-slate-500 font-medium">
             Clean, private space &middot; Zero unwanted mock data &middot; 100% encrypted &amp; cloud synced
           </p>
-          <div className="flex items-center justify-center gap-2 text-xs">
-            <span className="text-slate-500">Free &amp; Open Source</span>
-            <span className="text-slate-300">&middot;</span>
-            <a
-              href="https://github.com/raviattrash-pro/tuck-vault"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-semibold text-amber-700 hover:text-amber-800 transition bg-amber-50/80 hover:bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-200/60"
-            >
-              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
-              <span>Star on GitHub</span>
-            </a>
-          </div>
         </div>
       </div>
 
