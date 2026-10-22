@@ -2,10 +2,8 @@
 // Tuck App — Utility Functions
 // ============================================================================
 
-import { type ClassValue, clsx } from 'clsx';
-
 /**
- * Minimal clsx replacement (no extra dependency needed)
+ * Minimal cn helper (no extra dependency needed)
  */
 export function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ');

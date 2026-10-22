@@ -59,6 +59,13 @@ export interface VaultDocument extends BaseModel {
   tags: string[];
 }
 
+/** A checklist sub-item within a to-do */
+export interface NoteChecklistItem {
+  id: string;
+  text: string;
+  isCompleted: boolean;
+}
+
 /** A note or to-do item */
 export interface Note extends BaseModel {
   title: string;
@@ -72,6 +79,8 @@ export interface Note extends BaseModel {
   category?: string;
   /** Due date ISO string */
   dueDate?: string;
+  /** Interactive checklist tasks with checkboxes */
+  checklist?: NoteChecklistItem[];
 }
 
 /** A saved URL / link */

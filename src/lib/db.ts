@@ -16,7 +16,7 @@ export class TuckDB extends Dexie {
   constructor() {
     super('TuckDB');
 
-    this.version(1).stores({
+    this.version(20).stores({
       documents: 'id, type, title, updatedAt, syncStatus, isDeleted',
       notes:     'id, noteType, priority, isPinned, isCompleted, updatedAt, syncStatus, isDeleted, dueDate',
       links:     'id, domain, category, updatedAt, syncStatus, isDeleted',
@@ -27,13 +27,43 @@ export class TuckDB extends Dexie {
 
 export const db = new TuckDB();
 
+// Automatically handle legacy version locks or corrupted schemas
+if (typeof window !== 'undefined') {
+  db.open().catch(async (err) => {
+    console.warn('Dexie open error, auto-recovering:', err);
+    if (err?.name === 'VersionError' || err?.name === 'UpgradeError' || err?.name === 'DatabaseClosedError') {
+      try {
+        await Dexie.delete('TuckDB');
+        await db.open();
+        console.log('TuckDB recovered successfully');
+      } catch (e) {
+        console.error('Failed auto-recovering TuckDB', e);
+      }
+    }
+  });
+}
+
 // ============================================================================
 // Helper: generate a new record with defaults
 // ============================================================================
 
+function safeId(): string {
+  try {
+    if (typeof crypto !== 'undefined') {
+      if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+      if (typeof crypto.getRandomValues === 'function') {
+        const b = new Uint8Array(16);
+        crypto.getRandomValues(b);
+        return Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
+      }
+    }
+  } catch {}
+  return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 9);
+}
+
 function baseDefaults() {
   const now = new Date().toISOString();
-  return { id: uuid(), createdAt: now, updatedAt: now, syncStatus: 'pending' as const, isDeleted: false };
+  return { id: safeId(), createdAt: now, updatedAt: now, syncStatus: 'pending' as const, isDeleted: false };
 }
 
 // ============================================================================
@@ -55,7 +85,8 @@ export async function deleteDocument(id: string) {
 }
 
 export async function getDocuments() {
-  return db.documents.where('isDeleted').equals(0).reverse().sortBy('updatedAt');
+  const list = await db.documents.filter((d) => !d.isDeleted).toArray();
+  return list.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 }
 
 export async function getDocument(id: string) {
@@ -81,7 +112,8 @@ export async function deleteNote(id: string) {
 }
 
 export async function getNotes() {
-  return db.notes.where('isDeleted').equals(0).reverse().sortBy('updatedAt');
+  const list = await db.notes.filter((n) => !n.isDeleted).toArray();
+  return list.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 }
 
 export async function getNote(id: string) {
@@ -107,7 +139,8 @@ export async function deleteLink(id: string) {
 }
 
 export async function getLinks() {
-  return db.links.where('isDeleted').equals(0).reverse().sortBy('updatedAt');
+  const list = await db.links.filter((l) => !l.isDeleted).toArray();
+  return list.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 }
 
 // ============================================================================
@@ -129,7 +162,8 @@ export async function deleteList(id: string) {
 }
 
 export async function getLists() {
-  return db.lists.where('isDeleted').equals(0).reverse().sortBy('updatedAt');
+  const list = await db.lists.filter((l) => !l.isDeleted).toArray();
+  return list.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 }
 
 export async function getList(id: string) {
@@ -146,10 +180,10 @@ export async function getAppStats() {
   const todayStr = today.toISOString();
 
   const [documents, notes, links, lists] = await Promise.all([
-    db.documents.where('isDeleted').equals(0).count(),
-    db.notes.where('isDeleted').equals(0).toArray(),
-    db.links.where('isDeleted').equals(0).count(),
-    db.lists.where('isDeleted').equals(0).count(),
+    db.documents.filter((d) => !d.isDeleted).count(),
+    db.notes.filter((n) => !n.isDeleted).toArray(),
+    db.links.filter((l) => !l.isDeleted).count(),
+    db.lists.filter((l) => !l.isDeleted).count(),
   ]);
 
   const noteItems = notes.filter(n => !n.isDeleted);
@@ -212,5 +246,40 @@ export async function markAllSynced() {
     await db.notes.where('syncStatus').equals('pending').modify({ syncStatus: 'synced' });
     await db.links.where('syncStatus').equals('pending').modify({ syncStatus: 'synced' });
     await db.lists.where('syncStatus').equals('pending').modify({ syncStatus: 'synced' });
+  });
+}
+
+/**
+ * Cleanup any legacy mock/demo data so the user has a completely clean, private space
+ */
+export async function seedInitialDataIfEmpty() {
+  // We do NOT seed any default mock data. The space belongs to the user.
+  // Clean up any previously seeded mock data if present:
+  try {
+    const mockDocIds = ['doc-aadhaar', 'doc-pan', 'doc-voter', 'doc-dl', 'doc-office', 'doc-insurance'];
+    const mockNoteIds = ['note-weekly-reset', 'note-weekend-ideas', 'todo-motor-insurance', 'todo-dentist', 'todo-groceries'];
+    const mockLinkIds = ['link-1', 'link-2', 'link-3'];
+    const mockListIds = ['list-groceries', 'list-october-budget'];
+
+    await db.transaction('rw', db.documents, db.notes, db.links, db.lists, async () => {
+      for (const id of mockDocIds) await db.documents.delete(id);
+      for (const id of mockNoteIds) await db.notes.delete(id);
+      for (const id of mockLinkIds) await db.links.delete(id);
+      for (const id of mockListIds) await db.lists.delete(id);
+    });
+  } catch (e) {
+    console.error('Failed cleaning mock data', e);
+  }
+}
+
+/**
+ * Wipe all data (for user reset / logout)
+ */
+export async function clearAllData() {
+  await db.transaction('rw', db.documents, db.notes, db.links, db.lists, async () => {
+    await db.documents.clear();
+    await db.notes.clear();
+    await db.links.clear();
+    await db.lists.clear();
   });
 }
