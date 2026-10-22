@@ -69,8 +69,8 @@ export default function LoginPage() {
   const [googleInputName, setGoogleInputName] = useState('');
 
   // Admin form state
-  const [adminUsername, setAdminUsername] = useState('admin');
-  const [adminPassword, setAdminPassword] = useState('admin123');
+  const [adminUsername, setAdminUsername] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
   const [showAdminPassword, setShowAdminPassword] = useState(false);
   const [adminError, setAdminError] = useState('');
 
@@ -218,7 +218,7 @@ export default function LoginPage() {
       (p === 'admin123' || p === 'admin' || p === 'password');
 
     if (!isValidAdmin) {
-      setAdminError('Invalid credentials. Default ID: admin · Password: admin123');
+      setAdminError('Invalid credentials. Please verify your admin username and password.');
       return;
     }
 
@@ -391,8 +391,9 @@ export default function LoginPage() {
                       type="text"
                       value={adminUsername}
                       onChange={(e) => setAdminUsername(e.target.value)}
-                      placeholder="admin"
+                      placeholder="Enter admin ID or username"
                       required
+                      autoComplete="username"
                       className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition"
                     />
                   </div>
@@ -409,8 +410,9 @@ export default function LoginPage() {
                       type={showAdminPassword ? 'text' : 'password'}
                       value={adminPassword}
                       onChange={(e) => setAdminPassword(e.target.value)}
-                      placeholder="admin123"
+                      placeholder="Enter password"
                       required
+                      autoComplete="current-password"
                       className="w-full pl-10 pr-10 py-2.5 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition"
                     />
                     <button
@@ -425,21 +427,6 @@ export default function LoginPage() {
                       )}
                     </button>
                   </div>
-                </div>
-
-                {/* Default Credentials Helper Pill */}
-                <div
-                  onClick={() => {
-                    setAdminUsername('admin');
-                    setAdminPassword('admin123');
-                    setAdminError('');
-                  }}
-                  className="cursor-pointer bg-indigo-50/70 hover:bg-indigo-50 border border-indigo-100/70 rounded-2xl p-2.5 text-center transition"
-                >
-                  <p className="text-[11px] text-indigo-700 font-medium">
-                    Default: <span className="font-mono font-bold">admin</span> &middot; Password:{' '}
-                    <span className="font-mono font-bold">admin123</span> (tap to fill)
-                  </p>
                 </div>
 
                 {/* Submit button */}
