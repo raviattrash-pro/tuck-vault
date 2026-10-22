@@ -83,6 +83,52 @@ export default function LoginPage() {
     }
   }, [hydrated, user, router]);
 
+  // Check if returning from Google OAuth direct redirect flow
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hash = window.location.hash;
+    if (hash && hash.includes('access_token')) {
+      const params = new URLSearchParams(hash.substring(1));
+      const accessToken = params.get('access_token');
+      if (accessToken) {
+        setIsLoading(true);
+        fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+          .then((res) => res.json())
+          .then((profile) => {
+            if (profile?.email) {
+              const gName = profile.name || profile.given_name || profile.email.split('@')[0];
+              const gAvatar = profile.picture || null;
+              setPendingUser({
+                name: gName,
+                email: profile.email,
+                avatar: gAvatar,
+              });
+              setCustomName(gName);
+              setStep('set_name');
+              window.history.replaceState(null, '', window.location.pathname);
+            }
+          })
+          .catch((err) => console.error('OAuth token fetch error:', err))
+          .finally(() => setIsLoading(false));
+      }
+    }
+  }, []);
+
+  const handleDirectGoogleLogin = () => {
+    const clientId =
+      process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+      '939865483008-0n78umvtk3g67j8g5aotespfqsm1856q.apps.googleusercontent.com';
+    const redirectUri = window.location.origin + '/login';
+    const oauthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(
+      clientId
+    )}&redirect_uri=${encodeURIComponent(
+      redirectUri
+    )}&response_type=token&scope=openid%20profile%20email&prompt=select_account`;
+    window.location.href = oauthUrl;
+  };
+
   // Load Google Identity Services script
   useEffect(() => {
     const existingScript = document.getElementById('google-jssdk');
@@ -346,6 +392,17 @@ export default function LoginPage() {
                       <span>{isLoading ? 'Connecting to Google...' : 'Continue with Google'}</span>
                     </button>
                   )}
+
+                  {/* Fallback direct full-page redirect button (bypasses browser popup blockers 100%) */}
+                  <div className="pt-2 text-center">
+                    <button
+                      type="button"
+                      onClick={handleDirectGoogleLogin}
+                      className="text-[11px] text-indigo-600 hover:text-indigo-800 font-semibold underline underline-offset-4 transition"
+                    >
+                      Popup blocked? Click here to sign in with Google directly &rarr;
+                    </button>
+                  </div>
                 </div>
 
                 {/* Corporate compliance notes */}
